@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Thèmes et Formateurs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../pages.css">
+    <link rel="stylesheet" href="tf.css">
+</head>
+<body>
+    <nav>
+        <a href="../index.html"><img style="width: 355px;" id="logo_brand" src="../logo_orion-web.png" alt=""></a>
+            <ul id="navlist">
+            <li><a href="../addformateur/addform.html" target="_blank">Ajout formateur</a></li>
+            <li> <a href="../cotform/table.html" target="_blank">Gestion souhaits</a></li>
+            <li> <a href="../themeformateurs/themeforma.html" target="_blank">Thèmes et assignations</a></li>
+        </ul>
+    </nav>
+    <div class="container mt-5">
+        <button class="btn btn-primary mb-3" id="addNewThemeBtn">Créer un nouveau thème</button>
+        <h1>Gestion des Thèmes et Formateurs</h1>
+        <div class="row">
+            <div class="col">
+                <h3>Liste des Thèmes</h3>
+                <div class="form-group">
+                    <label for="filterType">Filtrer par type de financement</label>
+                    <select class="form-control" id="filterType">
+                        <option value="all">Tous</option>
+                        <option value="FIFPL">FIFPL</option>
+                        <option value="DPC">DPC</option>
+                        <option value="CV-DPC">CV-DPC</option>
+                        <option value="DPC/FIFPL">DPC/FIFPL</option>
+                    </select>
+                </div>
+                <ul id="themes-list">
+                    <!-- Les thèmes seront ajoutés ici dynamiquement -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier le thème -->
+    <div class="modal fade" id="themeModal" tabindex="-1" role="dialog" aria-labelledby="themeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="themeModalLabel">Modifier le Thème</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="themeForm">
+                        <div class="form-group">
+                            <label for="themeName">Nom</label>
+                            <input type="text" class="form-control" id="themeName">
+                        </div>
+                        <div class="form-group">
+                            <label for="themeType">Type</label>
+                            <input type="text" class="form-control" id="themeType">
+                        </div>
+                        <div class="form-group">
+                            <label for="themeColor">Couleur de fond (HEX)</label>
+                            <input type="color" class="form-control" id="themeColor">
+                        </div>
+                        <div class="form-group">
+                            <label for="themeDuration">Durée</label>
+                            <input type="text" class="form-control" id="themeDuration">
+                        </div>
+                        <div class="form-group">
+                            <label for="assignedFormateurs">Formateurs assignés</label>
+                            <ul id="assignedFormateurs">
+                                <!-- Formateurs assignés seront ajoutés ici dynamiquement -->
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="assignFormateursBtn">Assigner un ou plusieurs formateurs</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="saveThemeChanges">Enregistrer les modifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter un nouveau thème -->
+    <div class="modal fade" id="addThemeModal" tabindex="-1" role="dialog" aria-labelledby="addThemeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addThemeModalLabel">Ajouter un nouveau thème</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addThemeForm">
+                        <div class="form-group">
+                            <label for="newThemeName">Nom du thème</label>
+                            <input type="text" class="form-control" id="newThemeName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newThemeType">Type</label>
+                            <input type="text" class="form-control" id="newThemeType" name="type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newThemeColor">Couleur de fond</label>
+                            <input type="color" class="form-control" id="newThemeColor" name="bck_color" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newThemeDuration">Durée (jours)</label>
+                            <input type="number" class="form-control" id="newThemeDuration" name="duration" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter le thème</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour assigner des formateurs -->
+    <div class="modal fade" id="assignFormateursModal" tabindex="-1" role="dialog" aria-labelledby="assignFormateursModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assignFormateursModalLabel">Assigner des formateurs</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-body-fixed">
+                    <button type="button" class="btn btn-primary mb-3" id="confirmAssignFormateurs" disabled>Confirmer l'assignation</button>
+                    <div class="alphabet-nav"></div>
+                    <form id="assignFormateursForm">
+                        <div class="form-group">
+                            <label for="availableFormateurs">Formateurs disponibles</label>
+                            <ul id="availableFormateurs">
+                                <!-- Formateurs disponibles seront ajoutés ici dynamiquement -->
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="themeFormateur.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

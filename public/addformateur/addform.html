@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter des Formateurs et Assigner des Thèmes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../pages.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .formateur-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            list-style-type: none;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .theme-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            list-style-type: none;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .assign-btn {
+            color: green;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .remove-btn {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <a href="../index.html"><img style="width: 355px;" id="logo_brand" src="../logo_orion-web.png" alt=""></a>
+        <ul id="navlist">
+            <li><a href="../addformateur/addform.html" target="_blank">Ajout formateur</a></li>
+            <li> <a href="../cotform/table.html" target="_blank">Gestion souhaits</a></li>
+            <li> <a href="../themeformateurs/themeforma.html" target="_blank">Thèmes et assignations</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Ajouter des Formateurs et Assigner des Thèmes</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Ajouter un Formateur</h3>
+                <form id="add-formateur-form">
+                    <div class="form-group">
+                        <label for="nom">Nom:</label>
+                        <input type="text" class="form-control" id="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="prenom">Prénom:</label>
+                        <input type="text" class="form-control" id="prenom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ville">Ville:</label>
+                        <input type="text" class="form-control" id="ville" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cp">Code Postal:</label>
+                        <input type="text" class="form-control" id="cp" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Téléphone:</label>
+                        <input type="text" class="form-control" id="telephone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">Mail:</label>
+                        <input type="email" class="form-control" id="mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adresse">Adresse:</label>
+                        <input type="text" class="form-control" id="adresse" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="themes">Thèmes (sélectionner multiples):</label>
+                        <select multiple class="form-control" id="themes">
+                            <!-- Les thèmes seront ajoutés ici dynamiquement -->
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter Formateur</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>Liste des Formateurs</h3>
+                <ul id="formateurs-list">
+                    <!-- Les formateurs seront ajoutés ici dynamiquement -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier un formateur -->
+    <div class="modal fade" id="editFormateurModal" tabindex="-1" role="dialog" aria-labelledby="editFormateurModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFormateurModalLabel">Modifier Formateur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-formateur-form">
+                        <div class="form-group">
+                            <label for="edit-nom">Nom:</label>
+                            <input type="text" class="form-control" id="edit-nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-prenom">Prénom:</label>
+                            <input type="text" class="form-control" id="edit-prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-ville">Ville:</label>
+                            <input type="text" class="form-control" id="edit-ville" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-cp">Code Postal:</label>
+                            <input type="text" class="form-control" id="edit-cp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-telephone">Téléphone:</label>
+                            <input type="text" class="form-control" id="edit-telephone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-mail">Mail:</label>
+                            <input type="email" class="form-control" id="edit-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-adresse">Adresse:</label>
+                            <input type="text" class="form-control" id="edit-adresse" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-themes">Thèmes (sélectionner multiples):</label>
+                            <select multiple class="form-control" id="edit-themes">
+                                <!-- Les thèmes seront ajoutés ici dynamiquement -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="addFormateur.js"></script>
+</body>
+</html>

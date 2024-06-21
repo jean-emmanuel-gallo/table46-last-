@@ -1,0 +1,73 @@
+.theme-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    list-style-type: none;
+    color: white;
+    text-align: center;
+}
+
+.formateur-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    list-style-type: none;
+    text-align: center;
+}
+
+.formateur-item .remove {
+    color: red;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.formateur-item .assign {
+    color: green;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.alphabet-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.alphabet-nav button {
+    margin: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.alphabet-nav .active {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.modal-body-fixed {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+
+.modal.show .modal-dialog {
+    -webkit-transform: none;
+    transform: none;
+    left: 0;
+    padding-left: 0px;
+    margin-left: 0;
+    margin-right: 0;
+    margin: auto;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+#themeModal {
+    text-align: -webkit-center;
+}
+
+.modal-content {
+    width: 932px;
+}

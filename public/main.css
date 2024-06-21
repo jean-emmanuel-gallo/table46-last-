@@ -1,0 +1,209 @@
+#logo_brand {
+    width: 355px;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+}
+
+th{ 
+    cursor: pointer;
+    color:#fff;
+    background-color: black;
+    border-left: 1px solid white;
+    }
+
+.bg-info {
+    background-color: black !important;
+}
+
+#monTableau {
+    width: 1323px;
+    border: none;
+    margin-top: 6pc;
+    margin-left: 2pc;
+}
+
+td {
+    border: 1px solid black;
+    color: black;
+}
+
+
+/* Ajout de styles pour réduire la taille des champs de recherche */
+.form-control {
+    /* width: calc(20% - 10px); */
+    display: inline-block;
+    margin-right: 10px;
+    width: 379px;
+}
+
+/* Ajout de styles pour aligner les champs de recherche sur une seule ligne */
+.card-body {
+    display: ruby-text;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #EC5B15;
+    border-color    : #EC5B15;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #c14a0f;
+    border-color    : #c14a0f;
+}
+
+.btn-success {
+    background-color: #EC5B15;
+    border-color    : #EC5B15;
+}
+
+.btn-success:hover {
+    background-color: #c14a0f;
+    border-color    : #c14a0f;
+}
+
+
+
+/* Style pour le curseur en forme de doigt */
+.event-row {
+    cursor: pointer;
+}
+
+/* Style pour la couleur de fond au survol */
+.event-row:hover td {
+    background-color: #585858;
+    color: white;
+    transition: 0.5s;
+}
+
+
+.theme-cell {
+    background-color: inherit; /* Par défaut, la couleur d'arrière-plan est héritée */
+}
+
+
+
+#formateurs-list-container {
+    position: absolute;
+    display: none;
+    width: 200px;
+    z-index: 1000;
+}
+
+
+#formateurs-list {
+    padding-left: 0;
+    margin-top: -69%;
+}
+
+.formateur-btn {
+    background-color: #EC5B15;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.add-formateur-btn {
+    background-color: #ddd;
+    color: black;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.formateur-item {
+    background-color: #EC5B15;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+
+.table {
+    width: 1154px;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.card-body {
+    width: 1154px;
+}
+
+.locked-event {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+nav   {
+    display: flex;
+}
+
+#navlist {
+    list-style: none;
+    display: flex;
+    margin-top: 1%;
+}
+
+#navlist li {
+    margin-left: 50px;
+}
+
+#timenav {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.year-navigation, .month-navigation {
+    display: flex;
+    align-items: center;
+    place-content: flex-start;
+    margin-top: 0;
+}
+
+.year-navigation button, .month-navigation button {
+    margin: 0 10px;
+}
+
+
+.btn-secondary {
+    color: #fff;
+    background-color: #EC5B15;
+    border-color: #EC5B15;
+    border-radius: 100px;
+    height: auto;
+    width: auto;
+}
+
+.month-btn {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.month-btn.has-events {
+    background-color: #EC5B15;
+    pointer-events: all;
+}
+
+#months-container {
+    margin-left: 100px;
+}
